@@ -1,4 +1,6 @@
 function Enumerable() {
+
+  
   this.map = function(block) {
     var results = [];
 

@@ -7,7 +7,21 @@ function Book(options) {
 
 }
 
-Book.prototype.fetch = function() {
+
+Book.prototype.fetch = function(data) {
+  bookData = [];
+  data.items.forEach(function(element) {
+   // console.log(element.volumeInfo.title);
+    var book = new Book({
+      title: element.volumeInfo.title,
+      author: element.volumeInfo.authors,
+      description: element.volumeInfo.description,
+      publishedDate: element.volumeInfo.publishedDate,
+      imageUrl: element.volumeInfo.imageLinks.thumbnail
+    });
+    bookData.push(book);
+  });
+  return bookData;
 
 }
 
