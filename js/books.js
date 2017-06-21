@@ -7,6 +7,19 @@ function Book(options) {
 
 }
 
+Book.prototype.each = function(block) {
+  for(var i = 0; i < 10; i++) {
+    var nextDay = new Date(
+      this.startsAt.getFullYear(),
+      this.startsAt.getMonth(),
+      this.startsAt.getDate()
+    )
+    nextDay.setDate(this.startsAt.getDate() + i);
+
+    block.call(this, nextDay);
+  }
+}
+
 
 Book.prototype.fetch = function(data) {
   bookData = [];

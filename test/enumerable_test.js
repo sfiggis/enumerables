@@ -1,6 +1,5 @@
 var chai = require('chai');
 var expect = chai.expect;
-var Book = require('../js/books');
 const Week = require('../js/week');
 const Enumerable = require('../js/enumerable');
 var sinon = require('sinon');
