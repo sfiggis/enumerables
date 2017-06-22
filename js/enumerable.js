@@ -17,7 +17,7 @@ function Enumerable() {
     this.each(function(date) {
      // console.log(date.getDate(date));
       if (block.call(date, date) === true) {
-        results.push(date.getDate());
+        results.push(date);
       }
     });
     return results;
@@ -28,7 +28,7 @@ function Enumerable() {
 
     this.each(function(date) {
       if (block.call(date, date) === true) {
-        results.push(date.getDate());
+        results.push(date);
         return;
       }
     })

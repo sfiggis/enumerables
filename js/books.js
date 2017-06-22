@@ -35,7 +35,16 @@ Book.prototype.fetch = function(data) {
     bookData.push(book);
   });
   return bookData;
-
 }
+
+Book.prototype.render = function() {
+  var container = document.createElement("div");
+  var title = document.createElement("h1");
+  title.innerHTML = this.title;
+  container.appendChild(title);
+  var image = new Image({src: this.imageUrl});
+  container.appendChild(image.render());
+  return container;
+};
 
 module.exports = Book;

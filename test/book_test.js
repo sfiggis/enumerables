@@ -1,9 +1,17 @@
 const Data = require('../js/books_data')
+Image = require('../js/image');
 var Book = require('../js/books');
 var chai = require('chai');
 var expect = chai.expect;
 const ArrayEnumerable = require('../js/array_enumerable');
 var sinon = require('sinon');
+var chaiDom = require('chai-dom');
+chai.use(chaiDom);
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM();
+document = dom.window.document;
+window = dom.window;
 
 
 
@@ -62,10 +70,24 @@ describe('A book', function() {
       expect(results).to.deep.eq([book]);
     });
   });
-  //   })
-    // var booksData;
-    // beforeEach(function() {
-    //   booksData = Json.parse(Data);
-    // });
-  //});
+
+  describe('render', function() {
+    var rendered;
+
+    beforeEach(function() {
+      rendered = book.render();
+    });
+
+    it("displays a book as a DOM element", function() {
+      expect(rendered.nodeName).to.eq("DIV");
+    });
+    it("displays a title as a h1", function() {
+      expect(rendered.children[0].nodeName).to.eq("H1");
+      expect(rendered.children[0].innerHTML).to.eq("Harry Potter and the Deathly Hallows");
+    });
+    it("displays an image", function() {
+      expect(rendered.children[1].nodeName).to.eq("IMG");
+      expect(rendered.children[1].getAttribute("src")).to.eq("http://books.google.com/books/content?id=gCtazG4ZXlQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api");
+    });
+  });
 });
